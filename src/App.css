@@ -82,7 +82,7 @@ input::placeholder {
 .input_text:not(:placeholder-shown) ~ label {
   top: -0.9rem;
   left: 1rem;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   background: black;
   transition: top 0.2s ease-in-out;
   color: #cbe2f6;

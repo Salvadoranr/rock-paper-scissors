@@ -9,6 +9,7 @@ const IconButton = ({ name, handleClick, disabled, icon, className }) => {
       name={name}
       onClick={handleClick}
       disabled={disabled}
+      data-testid="IconButtonComponent"
     >
       <FontAwesomeIcon icon={FAI[icon]} />
     </button>

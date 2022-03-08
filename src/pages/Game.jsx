@@ -2,6 +2,8 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import IconButton from "../components/IconButton";
+import TextButton from "../components/TextButton";
+import Text from "../components/Text";
 import generateSelection from "../utils/generateSelection";
 import { getLocalStorage, setLocalStorage } from "../utils/manageLocalStorage";
 import handleMessage from "../utils/handleMessage";
@@ -27,16 +29,22 @@ const Game = ({ player, options, lvl }) => {
     setTimeout(() => {
       const botSelection = generateSelection(options);
       setSecondSelection(botSelection);
-      if(lvl===1){
+      if (lvl === 1) {
         setMessage(
           handleMessage(playerSelection, botSelection, options, winning, setWin)
         );
-      }else{
+      } else {
         setMessage(
-          handleMessage(playerSelection, botSelection, options, winningLvl2, setWinsLvl)
+          handleMessage(
+            playerSelection,
+            botSelection,
+            options,
+            winningLvl2,
+            setWinsLvl
+          )
         );
       }
-      
+
       setDisabled(false);
     }, 1000);
   }
@@ -46,20 +54,20 @@ const Game = ({ player, options, lvl }) => {
       window.location.href = "/home";
     }
   }, []);
-  useEffect(()=>{
-    const currentLS = getLocalStorage('player')
-    const players = currentLS.filter( el => el.name !== player.name )
-    setLocalStorage('player',[...players,{...player,score:winning}])
-
-  },[winning])
+  useEffect(() => {
+    const currentLS = getLocalStorage("player");
+    const players = currentLS.filter((el) => el.name !== player.name);
+    setLocalStorage("player", [...players, { ...player, score: winning }]);
+  }, [winning]);
 
   return (
     player.name && (
-      <Fragment>
+      <div data-testid="GamePage">
         <Header name={player.name} />
         <div className="container u-mt-2">
           <h3 className="text u-mt-1-5">
-            Score:{lvl===1 ? <span>{winning}</span>: <span>{winningLvl2}</span>}
+            Score:
+            {lvl === 1 ? <span>{winning}</span> : <span>{winningLvl2}</span>}
           </h3>
           <div className="game_options u-mt-1-5">
             {optionsList.map((el) => (
@@ -72,23 +80,33 @@ const Game = ({ player, options, lvl }) => {
               />
             ))}
           </div>
-          <p className="text u-mt-1-5">
-          <span className="text-small"> You choose: </span> {firstSelection.toUpperCase()}
-          </p>
-          <p className="text u-mt-1-5">
-          <span className="text-small"> The Bot choose: </span> {secondSelection.toUpperCase()}
-          </p>
-          <p className="text u-mt-1"> {message}</p>
+          <Text
+            pClass="text u-mt-1-5"
+            pText={firstSelection}
+            pFormatFn={(txt) => txt.toUpperCase()}
+            sClass="text-small"
+            sText="You choose:"
+          />
+          <Text
+            pClass="text u-mt-1-5"
+            pText={secondSelection}
+            pFormatFn={(txt) => txt.toUpperCase()}
+            sClass="text-small"
+            sText="The Bot choose:"
+          />
+          <Text pClass="text u-mt-1" pText={message} />
 
-          {winning > 25 && lvl === 1 &&
+          {winning > 25 && lvl === 1 && (
             <Link to="/game-hard">
-              <button className="btn u-mt-1-5" type="submit" >
-                New level Unlock!
-              </button>
+              <TextButton
+                className="btn u-mt-1-5"
+                type="submit"
+                text="New level Unlock!"
+              />
             </Link>
-          }
+          )}
         </div>
-      </Fragment>
+      </div>
     )
   );
 };

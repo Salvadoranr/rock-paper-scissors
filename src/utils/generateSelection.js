@@ -1,6 +1,9 @@
 const generateSelection = (options) => {
     const optList = Object.keys(options)
-    const idx = Math.floor(Math.random() * (optList.length))
-    return optList[idx]
+    if (optList.length > 0) {
+        const idx = Math.floor(Math.random() * (optList.length))
+        return optList[idx]
+    }
+    return ''
 }
 export default generateSelection

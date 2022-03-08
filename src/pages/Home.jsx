@@ -1,7 +1,10 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import UseAddToHomeScreenPrompt from "../hooks/UseAddToHomeScreenPrompt";
 import IconButton from "../components/IconButton";
+import TextButton from "../components/TextButton";
+import Input from "../components/Input";
+import ToolTip from "../components/ToolTip";
 
 const Home = ({ handleUserName, handleButton }) => {
   const [inValid, setInvalid] = useState(true);
@@ -16,7 +19,7 @@ const Home = ({ handleUserName, handleButton }) => {
   const { isReady, promptToInstall, hasFinishedInstallation } =
     UseAddToHomeScreenPrompt();
   return (
-    <Fragment>
+    <div data-testid="HomePage">
       <div className="container u-mt-4">
         <div className="home__container-icon">
           <svg
@@ -30,44 +33,47 @@ const Home = ({ handleUserName, handleButton }) => {
           </svg>
         </div>
         <h2 className="title u-mt-1">Create new player</h2>
-        <div className="input_container u-mt-1-5">
-          <input
-            type="text"
-            className="input_text"
-            id="floatingInput"
-            placeholder="name"
-            autoComplete="off"
-            onChange={(e) => {
-              validateName(e.target.value);
-            }}
-          />
-          <label className="input_label" htmlFor="floatingInput">
-            Name <span className="">*</span>
-          </label>
-        </div>
+        <Input
+          conClass="input_container u-mt-1-5"
+          iType="text"
+          iClass="input_text"
+          inputId="floatingInput"
+          placeholder="name"
+          autoComplete="off"
+          handleChange={validateName}
+          labelClass="input_label"
+          text="Name"
+          sClass=""
+          sText="*"
+        />
         <Link to="/game">
-          <button className="btn u-mt-1-5" type="submit" disabled={inValid} onClick={handleButton} >
-            JOIN
-          </button>
+          <TextButton
+            className="btn u-mt-1-5"
+            type="submit"
+            text="JOIN"
+            disabled={inValid}
+            handleClick={handleButton}
+          />
         </Link>
       </div>
 
       <div>
         {isReady && !hasFinishedInstallation && (
-          <div className="container__install">
-            <p className="tooltip__install">
-              Click on the star to install the app on your device
-            </p>
+          <ToolTip
+            conClass="container__install"
+            pClass="tooltip__install"
+            text="Click on the star to install the app on your device"
+          >
             <IconButton
               className="btn__install"
               name="star"
               icon="faStar"
               handleClick={() => promptToInstall()}
             />
-          </div>
+          </ToolTip>
         )}
       </div>
-    </Fragment>
+    </div>
   );
 };
 export default Home;

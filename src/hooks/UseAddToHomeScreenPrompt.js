@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 
 const isInWebApp =
-  window.navigator.standalone === true ||
+  window.navigator.standalone ||
   window.matchMedia("(display-mode: standalone)").matches;
 
 const UseAddToHomeScreenPrompt = () => {
@@ -10,17 +10,13 @@ const UseAddToHomeScreenPrompt = () => {
   const [hasFinishedInstallation, setHasFinishedInstallation] =
     useState(isInWebApp);
 
-  const finishInstallation = useCallback(function () {
-    setHasFinishedInstallation(true);
-  }, []);
-
   const promptToInstall = useCallback(
     function () {
       if (prompt) {
         prompt.prompt();
         prompt.userChoice.then(function (choiceResult) {
           if (choiceResult.outcome === "accepted") {
-            finishInstallation();
+            setHasFinishedInstallation(true);
           }
         });
         return;
@@ -32,7 +28,7 @@ const UseAddToHomeScreenPrompt = () => {
         )
       );
     },
-    [finishInstallation, prompt]
+    [prompt]
   );
 
   useEffect(
@@ -61,10 +57,9 @@ const UseAddToHomeScreenPrompt = () => {
     () => ({
       isReady,
       promptToInstall,
-      hasFinishedInstallation,
-      finishInstallation,
+      hasFinishedInstallation
     }),
-    [isReady, promptToInstall, hasFinishedInstallation, finishInstallation]
+    [isReady, promptToInstall, hasFinishedInstallation]
   );
 }
 export default UseAddToHomeScreenPrompt

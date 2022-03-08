@@ -13,9 +13,8 @@ export const setLocalStorage = (key, value) => {
 	}
 };
 export const startStorage = (key, username) => {
-    const currentLS = getLocalStorage(key)
-    if(!currentLS){
-      setLocalStorage(key,[{name:username,score: 0}])
-    } 
-
-  }
+	const currentLS = getLocalStorage(key)
+	if (!currentLS) {
+		setLocalStorage(key, [{ name: username, score: 0 }])
+	}
+}

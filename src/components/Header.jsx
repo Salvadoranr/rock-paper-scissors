@@ -4,7 +4,7 @@ import IconButton from "./IconButton";
 
 const Header = ({ name }) => {
   return (
-    <header className="header_container">
+    <header className="header_container" data-testid="HeaderComponent">
       <h1 className="header_title">Hi, {name}</h1>
       <div className="header_button">
         <Link to="/">
