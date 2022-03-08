@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "https://salvadoranr.github.io/rock-paper-scissors/static/css/main.74df1cf3.css",
-    "main.js": "https://salvadoranr.github.io/rock-paper-scissors/static/js/main.f2192d77.js",
+    "main.js": "https://salvadoranr.github.io/rock-paper-scissors/static/js/main.28a0b54b.js",
     "static/js/787.c8ffd4a8.chunk.js": "https://salvadoranr.github.io/rock-paper-scissors/static/js/787.c8ffd4a8.chunk.js",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "https://salvadoranr.github.io/rock-paper-scissors/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/fontawesome-webfont.eot": "https://salvadoranr.github.io/rock-paper-scissors/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
@@ -11,11 +11,11 @@
     "service-worker.js": "https://salvadoranr.github.io/rock-paper-scissors/service-worker.js",
     "index.html": "https://salvadoranr.github.io/rock-paper-scissors/index.html",
     "main.74df1cf3.css.map": "https://salvadoranr.github.io/rock-paper-scissors/static/css/main.74df1cf3.css.map",
-    "main.f2192d77.js.map": "https://salvadoranr.github.io/rock-paper-scissors/static/js/main.f2192d77.js.map",
+    "main.28a0b54b.js.map": "https://salvadoranr.github.io/rock-paper-scissors/static/js/main.28a0b54b.js.map",
     "787.c8ffd4a8.chunk.js.map": "https://salvadoranr.github.io/rock-paper-scissors/static/js/787.c8ffd4a8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.74df1cf3.css",
-    "static/js/main.f2192d77.js"
+    "static/js/main.28a0b54b.js"
   ]
 }
